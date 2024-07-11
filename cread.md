@@ -1,6 +1,10 @@
- #这里宿主机使用Ubuntu20.04系统
+##### 配置编译环境 Ubuntu 20.04 
+```
 sudo apt install binfmt-support qemu-user-static gcc-10-aarch64-linux-gnu kernel-package fakeroot simg2img img2simg mkbootimg bison flex gcc-aarch64-linux-gnu pkg-config libncurses-dev libssl-dev unzip git debootstrap
+```
 
+##### 编译Linux内核
+```
 mkdir workspace && cd workspace
 
 cd ~/workspace/linux
@@ -22,20 +26,27 @@ make menuconfig
 make -j$(nproc)
 
 fakeroot make-kpkg  --initrd --cross-compile aarch64-linux-gnu- --arch arm64 kernel_image kernel_headers -j$(nproc)
+```
 
+##### 生成rootfs
+```
 cd ~/workspace
 dd if=/dev/zero of=root.img bs=1G count=2
 mkfs.ext4 root.img
 
 mkdir ~/chroot
 sudo mount root.img ~/chroot
-sudo debootstrap --arch arm64 focal ~/chroot https://
+sudo debootstrap --arch arm64 stable ~/chroot https://mirrors.tuna.tsinghua.edu.cn/debian/
+```
 
+##### Chroot
+```
 sudo mount --bind /proc ~/chroot/proc
 sudo mount --bind /dev ~/chroot/dev
 sudo mount --bind /dev/pts ~/chroot/dev/pts
 sudo mount --bind /sys ~/chroot/sys
 sudo chroot ~/chroot
+```
 
 rm /etc/localtime
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
