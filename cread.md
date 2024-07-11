@@ -94,8 +94,8 @@ mkbootimg --base 0x80000000 \
 
 
 
-
-
+##### 拓展文件系统
+```
 cat > /etc/systemd/system/resizefs.service << 'EOF'
 [Unit]
 Description=Expand root filesystem to fill partition
@@ -111,9 +111,10 @@ RemainAfterExit=true
 WantedBy=default.target
 EOF
 systemctl enable resizefs.service
+```
 
-
-
+##### 配置串口登录
+```
 cat > /etc/systemd/system/serial-getty@ttyGS0.service << EOF
 [Unit]
 Description=Serial Console Service on ttyGS0
@@ -130,7 +131,7 @@ EOF
 systemctl enable serial-getty@ttyGS0.service
 #如果串口登录失效，可能是g_serial模块没有加载
 echo g_serial >> /etc/modules
-
+```
 
 apt clean
 rm -f /tmp/*
