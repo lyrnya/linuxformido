@@ -1,15 +1,22 @@
-##### 配置编译环境 Ubuntu 20.04 
+### 一、编译内核
+##### 准备环境 Ubuntu 20.04 
 ```
 sudo apt install binfmt-support qemu-user-static gcc-10-aarch64-linux-gnu kernel-package fakeroot simg2img img2simg mkbootimg bison flex gcc-aarch64-linux-gnu pkg-config libncurses-dev libssl-dev unzip git debootstrap
 ```
 
-##### 编译Linux内核
+##### 下载源码与配置
 ```
+# 下载源码
 mkdir workspace && cd workspace
+git clone https://github.com/msm8953-mainline/linux.git --depth 1
 
+# 下载配置文件
 cd ~/workspace/linux
 wget https://github.com/lyrnya/linuxformido/blob/main/.config
-
+```
+##### 编译内核
+```
+# 编译内核 生成内核安装包
 cd ~/workspace
 cat > env.sh << EOF
 export CROSS_COMPILE=aarch64-linux-gnu-
@@ -17,18 +24,16 @@ export ARCH=arm64
 export CC=aarch64-linux-gnu-gcc
 EOF
 chmod +x env.sh
-
 source ./env.sh
 cd ./linux
 make clean
 rm -r ./debian
 make menuconfig
 make -j$(nproc)
-
 fakeroot make-kpkg  --initrd --cross-compile aarch64-linux-gnu- --arch arm64 kernel_image kernel_headers -j$(nproc)
 ```
 
-##### 生成rootfs
+### 二、制作rootfs镜像
 ```
 cd ~/workspace
 dd if=/dev/zero of=root.img bs=1G count=2
