@@ -4,6 +4,8 @@
 sudo apt install binfmt-support qemu-user-static gcc-10-aarch64-linux-gnu kernel-package fakeroot simg2img img2simg mkbootimg bison flex gcc-aarch64-linux-gnu pkg-config libncurses-dev libssl-dev unzip git debootstrap
 ```
 
+https://github.com/Kiciuk/proprietary_firmware_mido
+
 ##### 下载源码与配置
 ```
 # 下载源码
