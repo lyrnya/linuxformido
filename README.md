@@ -18,7 +18,7 @@ git clone https://github.com/msm8953-mainline/linux.git --depth 1
 
 # 下载config
 cd ~/workspace/linux
-wget https://raw.githubusercontent.com/lyrnya/linuxformido/main/.config
+wget https://mirror.ghproxy.com/https://raw.githubusercontent.com/lyrnya/debianformido/main/.config
 ```
 
 ## 编译内核
