@@ -60,7 +60,7 @@ sudo mount --bind /sys ~/workspace/chroot/sys
 sudo chroot ~/workspace/chroot /bin/bash
 
 # 安装基本软件
-apt install man man-db bash-completion network-manager wpasupplicant openssh-server initramfs-tools locales perl systemd-timesyncd --no-install-recommends -y
+apt install sudo man man-db bash-completion network-manager wpasupplicant openssh-server initramfs-tools locales perl systemd-timesyncd --no-install-recommends -y
 
 # 设置时区
 export PATH=$PATH:/usr/sbin
