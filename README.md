@@ -1,2 +1,2 @@
-# linuxformido
-红米Note4X移植Linux
+# debianformido
+红米Note4X移植Debian
