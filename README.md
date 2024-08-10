@@ -64,7 +64,6 @@ apt install sudo man man-db bash-completion network-manager wpasupplicant openss
 
 # 设置时区
 export PATH=$PATH:/usr/sbin
-export PATH=/usr/loca/sbin:/usr/sbin:/sbin:$PATH:
 dpkg-reconfigure tzdata
 dpkg-reconfigure locales
 
