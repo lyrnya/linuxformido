@@ -1,6 +1,6 @@
 # PostmarketOS
 
-TTYescape
+## TTYescape
 ```
 apk add ttyescape
 sudo nano /etc/conf.d/ttyescape.conf
@@ -36,4 +36,9 @@ stop() {
 ```
 ```
 sudo chmod +x /etc/init.d/ttyescape
+```
+
+## ZRAM
+```
+sudo nano /etc/conf.d/zram-init
 ```
